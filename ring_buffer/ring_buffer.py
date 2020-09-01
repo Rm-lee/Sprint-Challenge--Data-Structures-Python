@@ -22,8 +22,8 @@ class RingBuffer:
     def get(self):
         item_list = []
         for i in self.storage:
-            item_list.append(i["item_key"])
-        print(item_list)
+            if i["item_key"] is not None:
+                item_list.append(i["item_key"])
         return item_list
 
 ne = RingBuffer(3)

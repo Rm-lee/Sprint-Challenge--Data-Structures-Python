@@ -5,11 +5,11 @@ sys.setrecursionlimit(15000)
 start_time = time.time()
 
 f = open('names_1.txt', 'r')
-names_1 = f.read().split("\n").strip() # List containing 10000 names
+names_1 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 f = open('names_2.txt', 'r')
-names_2 = f.read().split("\n").strip() # List containing 10000 names
+names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 duplicates = []  # Return the list of duplicates in this data structure
@@ -36,10 +36,10 @@ class Tree:
             else:
                 self.left.insert(name)
     def get_dups(self, target):
-        
         if target == self.name:
             duplicates.append(target)
-        if ord(target[0].lower()) > ord(self.name[0].lower()):
+            return
+        if ord(target[0].lower()) >= ord(self.name[0].lower()):
             if self.right is None:
                 return 
             else:
@@ -50,11 +50,11 @@ class Tree:
                 return 
             else:
                 return self.left.get_dups(target)  
-new_tree = Tree("tim")
+new_tree = Tree("L")
 for name_1 in names_1:
-    new_tree.insert(name_1.strip())
+    new_tree.insert(name_1)
 for name_2 in names_2:
-    new_tree.get_dups(name_2.strip())
+    new_tree.get_dups(name_2)
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
